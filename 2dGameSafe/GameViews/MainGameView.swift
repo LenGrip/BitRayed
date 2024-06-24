@@ -85,10 +85,12 @@ struct MainGameView: View {
                     Spacer()
                     
                     VStack() {
-                        HoldableButton(imageName: "a.circle.fill") {
+                        TapButton(imageName: "a.circle.fill") {
                             gameViewModel.gameScene?.actionButton = true
-                        } onRelease: {
-                            gameViewModel.gameScene?.actionButton = false
+                        }
+                        
+                        TapButton(imageName: "b.circle.fill") {
+                            gameViewModel.gameScene?.possesButton = true
                         }
                     }
                     .offset(x: -100, y: 350)
