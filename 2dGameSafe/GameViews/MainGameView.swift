@@ -8,68 +8,96 @@
 import SwiftUI
 import SpriteKit
 
+class GameViewModel: ObservableObject {
+    let gameScene: GameScene?
+    
+    init() {
+        let newScene = GameScene(fileNamed: "MainScene.sks")!
+        newScene.scaleMode = .resizeFill
+        gameScene = newScene
+    }
+}
+
 struct MainGameView: View {
     
-    var scene: SKScene = {
-        let scene = GameScene(fileNamed: "MainScene.sks")!
-        scene.scaleMode = .resizeFill
-        return scene
-    }()
+//    var scene: SKScene = {
+//        let scene = GameScene(fileNamed: "MainScene.sks")!
+//        scene.scaleMode = .resizeFill
+//        return scene
+//    }()
     
     
     @State private var moveToLeft = false
     @State private var moveToRight = false
     
+    
+    
+    @StateObject var gameState = GameState()
+    @StateObject var gameViewModel = GameViewModel()
+    @State private var scene: GameScene? = nil
+    
+    
     var body: some View {
-        ZStack {
-            SpriteView(scene: scene)
-            
-            HStack {
-                VStack {
-                    Spacer()
-                    HoldableButton(imageName: "arrowshape.up.circle.fill") {
-                        (scene as? GameScene)?.moveUp = true
-                    } onRelease: {
-                        (scene as? GameScene)?.moveUp = false
-                    }
-                    HStack (spacing: 100){
-                        
-                        HoldableButton(imageName: "arrowshape.left.circle.fill") {
-                            (scene as? GameScene)?.moveToLeft = true
-                        } onRelease: {
-                            (scene as? GameScene)?.moveToLeft = false
+        VStack {
+            ZStack {
+                //            SpriteView(scene: scene)
+                if let scene = gameViewModel.gameScene {
+                    SpriteView(scene: scene)
+                        .id(1)
+                        .onAppear {
+                            print("Scene appeared")
+                            scene.gameState = gameState
                         }
-                        
-                        HoldableButton(imageName: "arrowshape.right.circle.fill") {
-                            (scene as? GameScene)?.moveToRight = true
-                        } onRelease: {
-                            (scene as? GameScene)?.moveToRight = false
-                        }
-                        
-                    }
-                    
-                    HoldableButton(imageName: "arrowshape.down.circle.fill") {
-                        (scene as? GameScene)?.moveDown = true
-                    } onRelease: {
-                        (scene as? GameScene)?.moveDown = false
-                    }
-                    
-                    
                 }
-                Spacer()
                 
-                VStack() {
-                    HoldableButton(imageName: "a.circle.fill") {
-                        (scene as? GameScene)?.actionButton = true
-                    } onRelease: {
-                        (scene as? GameScene)?.actionButton = false
+                HStack {
+                    VStack {
+                        Spacer()
+                        HoldableButton(imageName: "arrowshape.up.circle.fill") {
+                            gameViewModel.gameScene?.moveUp = true
+                        } onRelease: {
+                            gameViewModel.gameScene?.moveUp = false
+                        }
+                        HStack (spacing: 100){
+                            
+                            HoldableButton(imageName: "arrowshape.left.circle.fill") {
+                                gameViewModel.gameScene?.moveToLeft = true
+                            } onRelease: {
+                                gameViewModel.gameScene?.moveToLeft = false
+                            }
+                            
+                            HoldableButton(imageName: "arrowshape.right.circle.fill") {
+                                gameViewModel.gameScene?.moveToRight = true
+                            } onRelease: {
+                                gameViewModel.gameScene?.moveToRight = false
+                            }
+                            
+                        }
+                        
+                        HoldableButton(imageName: "arrowshape.down.circle.fill") {
+                            gameViewModel.gameScene?.moveDown = true
+                        } onRelease: {
+                            gameViewModel.gameScene?.moveDown = false
+                        }
+                        
+                        
                     }
+                    Spacer()
+                    
+                    VStack() {
+                        HoldableButton(imageName: "a.circle.fill") {
+                            gameViewModel.gameScene?.actionButton = true
+                        } onRelease: {
+                            gameViewModel.gameScene?.actionButton = false
+                        }
+                    }
+                    .offset(x: -100, y: 350)
                 }
-                .offset(x: -100, y: 350)
+                .padding()
             }
-            .padding()
+            .navigationBarBackButtonHidden()
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 }
 

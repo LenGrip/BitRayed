@@ -8,6 +8,7 @@
 import Foundation
 import SpriteKit
 import AVFoundation
+import SwiftUI
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -24,10 +25,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var cameraNode = SKCameraNode()
     var warningSign: SKSpriteNode!
     var heroNode: SKSpriteNode!
+    
+    var gameState: GameState?
 
     var contactManager: ContactManager!
     
-    let collisionNames = ["bed", "drawer", "tv", "chest"]
+    let collisionNames = ["bed", "drawer", "tv", "chest", "wardrobe", "file_cabinet", "safe", "pic_frame"]
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
@@ -124,18 +127,64 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if moveDown {
             hero.position.y -= 2
         }
-        if actionButton && contactManager.bedTapable {
-            presentShadowViewController()
-        }
-        if actionButton && contactManager.drawerTapable {
-            presentDrawerViewController()
-        }
-        if actionButton && contactManager.chestTapable {
-            presentSafeViewController()
-        }
-        if actionButton && contactManager.tvTapable {
-            presentVentViewController()
-        }
+//        if actionButton && gameState!.bedTapable {
+//            presentShadowViewController()
+//        }
+//        if actionButton && gameState!.drawerTapable {
+//            presentDrawerViewController()
+//        }
+//        if actionButton && gameState!.chestTapable {
+//            presentSafeViewController()
+//        }
+//        if actionButton && gameState!.tvTapable {
+//            presentVentViewController()
+//        }
+//        if actionButton && gameState!.wardrobeTapable {
+//            presentWardrobeViewController()
+//        }
+//        if actionButton && gameState!.cabinetTapable {
+//            presentCabinetViewController()
+//        }
+//        if actionButton && gameState!.safeTapable {
+//            presentCombLockViewController()
+//        }
+//        if actionButton && gameState!.picFrameTapable {
+//            presentPictureHintViewController()
+//        }
+        
+        if actionButton {
+                    if let gameState = gameState {
+                        if gameState.bedTapable {
+                            print("Chest is tappable")
+                            presentShadowViewController()
+                        } else if gameState.drawerTapable {
+                            print("Chest is tappable")
+                            presentDrawerViewController()
+                        } else if gameState.chestTapable {
+                            print("Chest is tappable")
+                            presentSafeViewController()
+                        } else if gameState.tvTapable {
+                            print("Chest is tappable")
+                            presentVentViewController()
+                        } else if gameState.wardrobeTapable {
+                            print("Chest is tappable")
+                            presentWardrobeViewController()
+                        } else if gameState.cabinetTapable {
+                            print("Chest is tappable")
+                            presentCabinetViewController()
+                        } else if gameState.safeTapable {
+                            print("Chest is tappable")
+                            presentCombLockViewController()
+                        } else if gameState.picFrameTapable {
+                            print("Chest is tappable")
+                            presentPictureHintViewController()
+                        } else {
+                            print("No actionable state detected")
+                        }
+                    } else {
+                        print("gameState is nil")
+                    }
+                }
         
         cameraNode.position = hero.position
 //        
@@ -196,6 +245,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ventViewController.modalPresentationStyle = .fullScreen
         viewController()?.present(ventViewController, animated: true, completion: nil)
     }
+
+    private func presentWardrobeViewController() {
+        let shakeView = ShakeView()
+        let hostingController = UIHostingController(rootView: shakeView)
+        hostingController.modalPresentationStyle = .fullScreen
+        viewController()?.present(hostingController, animated: true, completion: nil)
+    }
+
+    private func presentCabinetViewController() {
+        let cabinetView = FileCabinetView()
+        let hostingController = UIHostingController(rootView: cabinetView)
+        hostingController.modalPresentationStyle = .fullScreen
+        viewController()?.present(hostingController, animated: true, completion: nil)
+    }
+
+    private func presentCombLockViewController() {
+        let lockView = CombinationLockView()
+        let hostingController = UIHostingController(rootView: lockView)
+        hostingController.modalPresentationStyle = .fullScreen
+        viewController()?.present(hostingController, animated: true, completion: nil)
+    }
+
+    private func presentPictureHintViewController() {
+        let pictureView = AllAxisView()
+        let hostingController = UIHostingController(rootView: pictureView)
+        hostingController.modalPresentationStyle = .fullScreen
+        viewController()?.present(hostingController, animated: true, completion: nil)
+    }
 }
 
 extension SKScene {
@@ -210,3 +287,5 @@ extension SKScene {
         return nil
     }
 }
+
+

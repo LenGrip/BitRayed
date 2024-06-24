@@ -7,66 +7,113 @@
 
 import SpriteKit
 
-class ContactManager {
+class ContactManager: ObservableObject {
     weak var scene: GameScene?
-    
-    var bedTapable = false
-    var drawerTapable = false
-    var tvTapable = false
-    var chestTapable = false
+    var gameState = GameState()
     
     var actionSign: SKSpriteNode? 
 
     init(scene: GameScene) {
         self.scene = scene
+        self.gameState = scene.gameState ?? GameState()
         self.actionSign = scene.hero.childNode(withName: "actionSign") as? SKSpriteNode
     }
-
+    
     func handleContactBegin(contactA: String?, contactB: String?) {
+        
         if (contactA == "character" && contactB == "bed") || (contactA == "bed" && contactB == "character") {
-            bedTapable = true
+            gameState.bedTapable = true
             actionSign?.isHidden = false
             print("tap actionnya bro")
         }
         
         if (contactA == "character" && contactB == "drawer") || (contactA == "drawer" && contactB == "character") {
-            drawerTapable = true
+            gameState.drawerTapable = true
             actionSign?.isHidden = false
             print("tap actionnya bro 2")
         }
         
         if (contactA == "character" && contactB == "tv") || (contactA == "tv" && contactB == "character") {
-            tvTapable = true
+            gameState.tvTapable = true
             actionSign?.isHidden = false
             print("tap actionnya bro 3")
         }
         
         if (contactA == "character" && contactB == "chest") || (contactA == "chest" && contactB == "character") {
-            chestTapable = true
+            gameState.chestTapable = true
             actionSign?.isHidden = false
             print("tap actionnya bro 4")
+        }
+        if (contactA == "character" && contactB == "wardrobe") || (contactA == "wardrobe" && contactB == "character") {
+            gameState.wardrobeTapable = true
+            actionSign?.isHidden = false
+            print("tap actionnya bro 5")
+        }
+        if (contactA == "character" && contactB == "file_cabinet") || (contactA == "file_cabinet" && contactB == "character") {
+            gameState.cabinetTapable = true
+            actionSign?.isHidden = false
+            print("tap actionnya bro 6")
+        }
+        if (contactA == "character" && contactB == "safe") || (contactA == "safe" && contactB == "character") {
+            gameState.safeTapable = true
+            actionSign?.isHidden = false
+            print("tap actionnya bro 7")
+        }
+        if (contactA == "character" && contactB == "pic_frame") || (contactA == "pic_frame" && contactB == "character") {
+            gameState.picFrameTapable = true
+            actionSign?.isHidden = false
+            print("tap actionnya bro 8")
         }
     }
     
     func handleContactEnd(contactA: String?, contactB: String?) {
         if (contactA == "character" && contactB == "bed") || (contactA == "bed" && contactB == "character") {
-            bedTapable = false
+            gameState.bedTapable = false
             actionSign?.isHidden = true
         }
         
         if (contactA == "character" && contactB == "drawer") || (contactA == "drawer" && contactB == "character") {
-            drawerTapable = false
+            gameState.drawerTapable = false
             actionSign?.isHidden = true
         }
         
         if (contactA == "character" && contactB == "tv") || (contactA == "tv" && contactB == "character") {
-            tvTapable = false
+            gameState.tvTapable = false
             actionSign?.isHidden = true
         }
         
         if (contactA == "character" && contactB == "chest") || (contactA == "chest" && contactB == "character") {
-            chestTapable = false
+            gameState.chestTapable = false
+            actionSign?.isHidden = true
+        }
+        if (contactA == "character" && contactB == "wardrobe") || (contactA == "wardrobe" && contactB == "character") {
+            gameState.wardrobeTapable = false
+            actionSign?.isHidden = true
+        }
+        if (contactA == "character" && contactB == "file_cabinet") || (contactA == "file_cabinet" && contactB == "character") {
+            gameState.cabinetTapable = false
+            actionSign?.isHidden = true
+        }
+        if (contactA == "character" && contactB == "safe") || (contactA == "safe" && contactB == "character") {
+            gameState.safeTapable = false
+            actionSign?.isHidden = true
+        }
+        if (contactA == "character" && contactB == "pic_frame") || (contactA == "pic_frame" && contactB == "character") {
+            gameState.picFrameTapable = false
             actionSign?.isHidden = true
         }
     }
+}
+
+
+class GameState: ObservableObject{
+    
+    @Published var bedTapable = false
+    @Published var drawerTapable = false
+    @Published var tvTapable = false
+    @Published var chestTapable = false
+    @Published var wardrobeTapable = false
+    @Published var cabinetTapable = false
+    @Published var safeTapable = false
+    @Published var picFrameTapable = false
 }

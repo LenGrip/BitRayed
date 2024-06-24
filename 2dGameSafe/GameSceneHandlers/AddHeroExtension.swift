@@ -18,6 +18,7 @@ extension GameScene {
         hero.physicsBody?.affectedByGravity = false
         hero.physicsBody?.allowsRotation = false
         hero.name = "character"
+        hero.texture?.filteringMode = .nearest
         actionSign = SKSpriteNode(imageNamed: "actionSign")
         actionSign.size = CGSize(width: 5, height: 15)
         actionSign.zPosition = 50

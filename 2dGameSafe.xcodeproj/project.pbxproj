@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		034893C82C292593005867CC /* FileCabinetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893C42C292593005867CC /* FileCabinetView.swift */; };
+		034893C92C292593005867CC /* ShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893BF2C292593005867CC /* ShakeView.swift */; };
+		034893CA2C292593005867CC /* CombinationLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893C62C292593005867CC /* CombinationLockView.swift */; };
+		034893CB2C292593005867CC /* PeekGyroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893C32C292593005867CC /* PeekGyroManager.swift */; };
+		034893CC2C292593005867CC /* WardrobeShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893C02C292593005867CC /* WardrobeShakeView.swift */; };
+		034893CD2C292593005867CC /* ShakeMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893C12C292593005867CC /* ShakeMotionManager.swift */; };
+		034893D22C292C4F005867CC /* AllAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893CF2C292C4F005867CC /* AllAxisView.swift */; };
+		034893D32C292C4F005867CC /* GyroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893D02C292C4F005867CC /* GyroManager.swift */; };
+		034893D52C292C85005867CC /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893D42C292C85005867CC /* StartView.swift */; };
+		034893D82C292C9E005867CC /* GlitchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893D62C292C9E005867CC /* GlitchText.swift */; };
+		034893D92C292C9E005867CC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893D72C292C9E005867CC /* LoadingView.swift */; };
+		034893DD2C292CCD005867CC /* main_music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 034893DA2C292CCD005867CC /* main_music.wav */; };
+		034893DE2C292CCD005867CC /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893DB2C292CCD005867CC /* AudioPlayer.swift */; };
 		9A1E9C8E2C287C4A0079ED3A /* AddCollisionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E9C852C287C4A0079ED3A /* AddCollisionExtension.swift */; };
 		9A1E9C912C287C4A0079ED3A /* RainfallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E9C7F2C287C4A0079ED3A /* RainfallView.swift */; };
 		9A1E9C922C287C4A0079ED3A /* TilePhysicsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E9C862C287C4A0079ED3A /* TilePhysicsExtension.swift */; };
@@ -33,6 +46,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		034893BF2C292593005867CC /* ShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
+		034893C02C292593005867CC /* WardrobeShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeShakeView.swift; sourceTree = "<group>"; };
+		034893C12C292593005867CC /* ShakeMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeMotionManager.swift; sourceTree = "<group>"; };
+		034893C32C292593005867CC /* PeekGyroManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeekGyroManager.swift; sourceTree = "<group>"; };
+		034893C42C292593005867CC /* FileCabinetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCabinetView.swift; sourceTree = "<group>"; };
+		034893C62C292593005867CC /* CombinationLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinationLockView.swift; sourceTree = "<group>"; };
+		034893CF2C292C4F005867CC /* AllAxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAxisView.swift; sourceTree = "<group>"; };
+		034893D02C292C4F005867CC /* GyroManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroManager.swift; sourceTree = "<group>"; };
+		034893D42C292C85005867CC /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		034893D62C292C9E005867CC /* GlitchText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlitchText.swift; sourceTree = "<group>"; };
+		034893D72C292C9E005867CC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		034893DA2C292CCD005867CC /* main_music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = main_music.wav; sourceTree = "<group>"; };
+		034893DB2C292CCD005867CC /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		9A1E9C7D2C287C4A0079ED3A /* HoldableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldableButton.swift; sourceTree = "<group>"; };
 		9A1E9C7F2C287C4A0079ED3A /* RainfallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainfallView.swift; sourceTree = "<group>"; };
 		9A1E9C812C287C4A0079ED3A /* MainGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameView.swift; sourceTree = "<group>"; };
@@ -70,9 +96,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		034893C22C292593005867CC /* Puzzle1 */ = {
+			isa = PBXGroup;
+			children = (
+				034893BF2C292593005867CC /* ShakeView.swift */,
+				034893C02C292593005867CC /* WardrobeShakeView.swift */,
+				034893C12C292593005867CC /* ShakeMotionManager.swift */,
+			);
+			path = Puzzle1;
+			sourceTree = "<group>";
+		};
+		034893C52C292593005867CC /* Puzzle2 */ = {
+			isa = PBXGroup;
+			children = (
+				034893C32C292593005867CC /* PeekGyroManager.swift */,
+				034893C42C292593005867CC /* FileCabinetView.swift */,
+			);
+			path = Puzzle2;
+			sourceTree = "<group>";
+		};
+		034893C72C292593005867CC /* Puzzle3 */ = {
+			isa = PBXGroup;
+			children = (
+				034893C62C292593005867CC /* CombinationLockView.swift */,
+			);
+			path = Puzzle3;
+			sourceTree = "<group>";
+		};
+		034893CE2C292C4A005867CC /* HintViews */ = {
+			isa = PBXGroup;
+			children = (
+				034893D12C292C4F005867CC /* PaintingHint */,
+			);
+			path = HintViews;
+			sourceTree = "<group>";
+		};
+		034893D12C292C4F005867CC /* PaintingHint */ = {
+			isa = PBXGroup;
+			children = (
+				034893CF2C292C4F005867CC /* AllAxisView.swift */,
+				034893D02C292C4F005867CC /* GyroManager.swift */,
+			);
+			path = PaintingHint;
+			sourceTree = "<group>";
+		};
+		034893DC2C292CCD005867CC /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				034893DA2C292CCD005867CC /* main_music.wav */,
+				034893DB2C292CCD005867CC /* AudioPlayer.swift */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		9A1E9C7E2C287C4A0079ED3A /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				034893D62C292C9E005867CC /* GlitchText.swift */,
+				034893D72C292C9E005867CC /* LoadingView.swift */,
 				9A1E9C7D2C287C4A0079ED3A /* HoldableButton.swift */,
 			);
 			path = Tool;
@@ -81,6 +162,7 @@
 		9A1E9C802C287C4A0079ED3A /* OtherViews */ = {
 			isa = PBXGroup;
 			children = (
+				034893D42C292C85005867CC /* StartView.swift */,
 				9A1E9C7F2C287C4A0079ED3A /* RainfallView.swift */,
 			);
 			path = OtherViews;
@@ -134,6 +216,8 @@
 		A7C9A43A2C1B382D00F98BB9 /* 2dGameSafe */ = {
 			isa = PBXGroup;
 			children = (
+				034893DC2C292CCD005867CC /* Music */,
+				034893CE2C292C4A005867CC /* HintViews */,
 				9A1E9C7E2C287C4A0079ED3A /* Tool */,
 				9A1E9C802C287C4A0079ED3A /* OtherViews */,
 				9A1E9C822C287C4A0079ED3A /* GameViews */,
@@ -172,6 +256,9 @@
 		A7C9A4682C23C12500F98BB9 /* PuzzleController */ = {
 			isa = PBXGroup;
 			children = (
+				034893C22C292593005867CC /* Puzzle1 */,
+				034893C52C292593005867CC /* Puzzle2 */,
+				034893C72C292593005867CC /* Puzzle3 */,
 				A7C9A4572C2183F400F98BB9 /* ShadowViewController.swift */,
 				A7C9A4542C1C256B00F98BB9 /* VentViewController.swift */,
 				A7C9A4642C227F2A00F98BB9 /* DrawerViewController.swift */,
@@ -240,6 +327,7 @@
 			files = (
 				A7C9A4622C2183FB00F98BB9 /* PolyPlane.scn in Resources */,
 				A7C9A4432C1B382E00F98BB9 /* Preview Assets.xcassets in Resources */,
+				034893DD2C292CCD005867CC /* main_music.wav in Resources */,
 				A7C9A4612C2183FB00F98BB9 /* Box.scn in Resources */,
 				9A1E9C972C287C4A0079ED3A /* MainScene.sks in Resources */,
 				9A1E9C992C287C4A0079ED3A /* MyTileSet.sks in Resources */,
@@ -259,16 +347,28 @@
 				A7C9A43E2C1B382D00F98BB9 /* ContentView.swift in Sources */,
 				A7C9A44C2C1B3D4100F98BB9 /* SafeViewController.swift in Sources */,
 				A7C9A4562C1C256B00F98BB9 /* VentViewController.swift in Sources */,
+				034893D52C292C85005867CC /* StartView.swift in Sources */,
+				034893D82C292C9E005867CC /* GlitchText.swift in Sources */,
+				034893D92C292C9E005867CC /* LoadingView.swift in Sources */,
 				A7C9A43C2C1B382D00F98BB9 /* _dGameSafeApp.swift in Sources */,
 				A7C9A44E2C1B3D5500F98BB9 /* bitMasks.swift in Sources */,
 				9A1E9C8E2C287C4A0079ED3A /* AddCollisionExtension.swift in Sources */,
 				9A1E9C912C287C4A0079ED3A /* RainfallView.swift in Sources */,
+				034893C82C292593005867CC /* FileCabinetView.swift in Sources */,
+				034893C92C292593005867CC /* ShakeView.swift in Sources */,
+				034893CA2C292593005867CC /* CombinationLockView.swift in Sources */,
+				034893CB2C292593005867CC /* PeekGyroManager.swift in Sources */,
+				034893CC2C292593005867CC /* WardrobeShakeView.swift in Sources */,
+				034893CD2C292593005867CC /* ShakeMotionManager.swift in Sources */,
 				9A1E9C922C287C4A0079ED3A /* TilePhysicsExtension.swift in Sources */,
 				9A1E9C932C287C4A0079ED3A /* AddHeroExtension.swift in Sources */,
 				9A1E9C942C287C4A0079ED3A /* MainGameView.swift in Sources */,
 				9A1E9C952C287C4A0079ED3A /* GameScene.swift in Sources */,
 				9A1E9C962C287C4A0079ED3A /* HoldableButton.swift in Sources */,
+				034893DE2C292CCD005867CC /* AudioPlayer.swift in Sources */,
 				A7C9A47C2C291FD900F98BB9 /* ContactManager.swift in Sources */,
+				034893D22C292C4F005867CC /* AllAxisView.swift in Sources */,
+				034893D32C292C4F005867CC /* GyroManager.swift in Sources */,
 				A7C9A4502C1C0DA100F98BB9 /* GameViewControllerRepresentable.swift in Sources */,
 				A7C9A4652C227F2A00F98BB9 /* DrawerViewController.swift in Sources */,
 			);
@@ -404,14 +504,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"2dGameSafe/Preview Content\"";
-				DEVELOPMENT_TEAM = HQNZ8TWNYS;
+				DEVELOPMENT_TEAM = 4JD2N84N6P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -433,14 +532,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"2dGameSafe/Preview Content\"";
-				DEVELOPMENT_TEAM = HQNZ8TWNYS;
+				DEVELOPMENT_TEAM = 4JD2N84N6P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

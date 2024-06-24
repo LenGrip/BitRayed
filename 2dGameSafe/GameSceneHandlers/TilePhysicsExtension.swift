@@ -36,6 +36,7 @@ extension GameScene {
                     tileNode.zPosition = 1
                     tileNode.anchorPoint = .init(x: 0.5, y: 0.5)
                     
+                    tileNode.texture?.filteringMode = .nearest
                     // Tag the node for easy identification
                     tileNode.name = "furniture"
                     

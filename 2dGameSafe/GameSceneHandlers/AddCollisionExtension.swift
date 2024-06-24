@@ -18,6 +18,7 @@ extension GameScene {
                 node.physicsBody?.collisionBitMask = bitMasks.hero.rawValue
                 node.name = name
                 node.zPosition = 4
+                node.texture?.filteringMode = .nearest
             }
         }
     }
