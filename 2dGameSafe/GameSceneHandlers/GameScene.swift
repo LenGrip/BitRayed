@@ -145,34 +145,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if actionButton {
             if let gameState = gameState {
                 if gameState.bedTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.present(viewControllerType: .shadow)
                 } else if gameState.drawerTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.present(viewControllerType: .drawer)
                 } else if gameState.chestTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.present(viewControllerType: .safe)
                 } else if gameState.tvTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.present(viewControllerType: .vent)
                 } else if gameState.wardrobeTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .wardrobe)
                 } else if gameState.cabinetTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .cabinet)
                 } else if gameState.safeTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .lockpick)
                 } else if gameState.picFrameTapable {
-                    print("Chest is tappable")
                     viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .picture)
-                } else {
-                    print("No actionable state detected")
                 }
-            } else {
-                print("gameState is nil")
             }
         }
         
@@ -187,9 +175,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if possesButton {
             isPossessed = !isPossessed
             if isPossessed {
-                police.removeFromParent()
+                police.alpha = 0.5
             } else if isPossessed == false {
-                self.addChild(police)
+                police.alpha = 1
             }
             
             if let hero = self.childNode(withName: "character") as? SKSpriteNode {
