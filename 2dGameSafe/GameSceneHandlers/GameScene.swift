@@ -8,11 +8,11 @@
 import Foundation
 import SpriteKit
 import AVFoundation
-import SwiftUI
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var hero = SKSpriteNode()
+    var police = SKSpriteNode()
     var stuff = SKSpriteNode()
     var actionSign = SKSpriteNode()
     let hisTexture = SKTexture(imageNamed: "character")
@@ -21,7 +21,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveUp = false
     var moveDown = false
     var actionButton = false
-    var isInteract = false
+    var possesButton = false
+    var isPossessed = false
     var cameraNode = SKCameraNode()
     var warningSign: SKSpriteNode!
     var heroNode: SKSpriteNode!
@@ -29,19 +30,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameState: GameState?
 
     var contactManager: ContactManager!
+    var viewControllerPresenter: ViewControllerPresenter!
     
     let collisionNames = ["bed", "drawer", "tv", "chest", "wardrobe", "file_cabinet", "safe", "pic_frame"]
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
+        self.backgroundColor = .black
         
         setupCamera()
         
         addHero()
         
+        addPolice()
+        
         addCollisions(names: collisionNames)
         
         contactManager = ContactManager(scene: self)
+        
+        viewControllerPresenter = ViewControllerPresenter(presentingViewController: viewController()!)
+        
+        addRainEffect()
         
         for node in self.children {
             if(node.name == "wallPhysics") {
@@ -54,6 +63,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func addRainEffect() {
+        if let rainParticle = SKEmitterNode(fileNamed: "Rain") {
+            rainParticle.position = CGPoint(x: -300, y: 0)
+            rainParticle.zPosition = -10
+            rainParticle.targetNode = self
+            rainParticle.particlePositionRange = CGVector(dx: self.size.width, dy: 0)
+            self.addChild(rainParticle)
+        } else {
+            print("Rain particle not found")
+        }
+    }
     
     func setupCamera() {
         cameraNode = SKCameraNode()
@@ -82,9 +102,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if node.name == "down" {
                     moveDown = true
                 }
-                if node.name == "interact" {
-                    isInteract = true
-                }
             }
         }
     }
@@ -107,9 +124,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if node.name == "down" {
                     moveDown = false
                 }
-                if node.name == "interact" {
-                    isInteract = false
-                }
             }
         }
     }
@@ -127,87 +141,64 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if moveDown {
             hero.position.y -= 2
         }
-//        if actionButton && gameState!.bedTapable {
-//            presentShadowViewController()
-//        }
-//        if actionButton && gameState!.drawerTapable {
-//            presentDrawerViewController()
-//        }
-//        if actionButton && gameState!.chestTapable {
-//            presentSafeViewController()
-//        }
-//        if actionButton && gameState!.tvTapable {
-//            presentVentViewController()
-//        }
-//        if actionButton && gameState!.wardrobeTapable {
-//            presentWardrobeViewController()
-//        }
-//        if actionButton && gameState!.cabinetTapable {
-//            presentCabinetViewController()
-//        }
-//        if actionButton && gameState!.safeTapable {
-//            presentCombLockViewController()
-//        }
-//        if actionButton && gameState!.picFrameTapable {
-//            presentPictureHintViewController()
-//        }
         
         if actionButton {
-                    if let gameState = gameState {
-                        if gameState.bedTapable {
-                            print("Chest is tappable")
-                            presentShadowViewController()
-                        } else if gameState.drawerTapable {
-                            print("Chest is tappable")
-                            presentDrawerViewController()
-                        } else if gameState.chestTapable {
-                            print("Chest is tappable")
-                            presentSafeViewController()
-                        } else if gameState.tvTapable {
-                            print("Chest is tappable")
-                            presentVentViewController()
-                        } else if gameState.wardrobeTapable {
-                            print("Chest is tappable")
-                            presentWardrobeViewController()
-                        } else if gameState.cabinetTapable {
-                            print("Chest is tappable")
-                            presentCabinetViewController()
-                        } else if gameState.safeTapable {
-                            print("Chest is tappable")
-                            presentCombLockViewController()
-                        } else if gameState.picFrameTapable {
-                            print("Chest is tappable")
-                            presentPictureHintViewController()
-                        } else {
-                            print("No actionable state detected")
-                        }
-                    } else {
-                        print("gameState is nil")
-                    }
+            if let gameState = gameState {
+                if gameState.bedTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.present(viewControllerType: .shadow)
+                } else if gameState.drawerTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.present(viewControllerType: .drawer)
+                } else if gameState.chestTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.present(viewControllerType: .safe)
+                } else if gameState.tvTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.present(viewControllerType: .vent)
+                } else if gameState.wardrobeTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .wardrobe)
+                } else if gameState.cabinetTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .cabinet)
+                } else if gameState.safeTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .lockpick)
+                } else if gameState.picFrameTapable {
+                    print("Chest is tappable")
+                    viewControllerPresenter.presentSwiftUI(viewSwiftUIType: .picture)
+                } else {
+                    print("No actionable state detected")
                 }
+            } else {
+                print("gameState is nil")
+            }
+        }
         
+        if hero.intersects(police) {
+            handleContactBetweenHeroAndPolice()
+        }
+        possesButton = false
         cameraNode.position = hero.position
-//        
-//        guard let heroNode = heroNode else { return }
-//        let warningDistanceThreshold: CGFloat = 10.0
-//        
-//        var closestFurnitureNode: SKNode?
-//        var minDistance: CGFloat = .greatestFiniteMagnitude
-//        
-//        self.enumerateChildNodes(withName: "furniture") { node, _ in
-//            let distance = hypot(heroNode.position.x - node.position.x, heroNode.position.y - node.position.y)
-//            if distance < minDistance {
-//                minDistance = distance
-//                closestFurnitureNode = node
-//            }
-//        }
-//        
-//        if let closestFurnitureNode = closestFurnitureNode, minDistance < warningDistanceThreshold {
-//            warningSign.position = CGPoint(x: closestFurnitureNode.position.x, y: closestFurnitureNode.position.y + 50) // Adjust position as needed
-//            warningSign.isHidden = false
-//        } else {
-//            warningSign.isHidden = true
-//        }
+    }
+    
+    func handleContactBetweenHeroAndPolice() {
+        if possesButton {
+            isPossessed = !isPossessed
+            if isPossessed {
+                police.removeFromParent()
+            } else if isPossessed == false {
+                self.addChild(police)
+            }
+            
+            if let hero = self.childNode(withName: "character") as? SKSpriteNode {
+                hero.texture = SKTexture(imageNamed: isPossessed ? "human" : "character")
+                hero.size = CGSize(width: isPossessed ? 15 : 16, height: isPossessed ? 25 : 16)
+                hero.texture?.filteringMode = .nearest
+            }
+        }
+        
     }
     
     public func didBegin(_ contact: SKPhysicsContact) {
@@ -222,70 +213,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    private func presentShadowViewController() {
-        let shadowViewController = ShadowViewController()
-        shadowViewController.modalPresentationStyle = .fullScreen
-        viewController()?.present(shadowViewController, animated: true, completion: nil)
+    func savePuzzleState(puzzleID: String, isSolved: Bool) {
+        UserDefaults.standard.set(isSolved, forKey: puzzleID)
     }
-
-    private func presentDrawerViewController() {
-        let drawerViewController = DrawerViewController()
-        drawerViewController.modalPresentationStyle = .fullScreen
-        viewController()?.present(drawerViewController, animated: true, completion: nil)
-    }
-
-    private func presentSafeViewController() {
-        let safeViewController = SafeViewController()
-        safeViewController.modalPresentationStyle = .fullScreen
-        viewController()?.present(safeViewController, animated: true, completion: nil)
-    }
-
-    private func presentVentViewController() {
-        let ventViewController = VentViewController()
-        ventViewController.modalPresentationStyle = .fullScreen
-        viewController()?.present(ventViewController, animated: true, completion: nil)
-    }
-
-    private func presentWardrobeViewController() {
-        let shakeView = ShakeView()
-        let hostingController = UIHostingController(rootView: shakeView)
-        hostingController.modalPresentationStyle = .fullScreen
-        viewController()?.present(hostingController, animated: true, completion: nil)
-    }
-
-    private func presentCabinetViewController() {
-        let cabinetView = FileCabinetView()
-        let hostingController = UIHostingController(rootView: cabinetView)
-        hostingController.modalPresentationStyle = .fullScreen
-        viewController()?.present(hostingController, animated: true, completion: nil)
-    }
-
-    private func presentCombLockViewController() {
-        let lockView = CombinationLockView()
-        let hostingController = UIHostingController(rootView: lockView)
-        hostingController.modalPresentationStyle = .fullScreen
-        viewController()?.present(hostingController, animated: true, completion: nil)
-    }
-
-    private func presentPictureHintViewController() {
-        let pictureView = AllAxisView()
-        let hostingController = UIHostingController(rootView: pictureView)
-        hostingController.modalPresentationStyle = .fullScreen
-        viewController()?.present(hostingController, animated: true, completion: nil)
+    
+    func loadPuzzleState(puzzleID: String) -> Bool {
+        return UserDefaults.standard.bool(forKey: puzzleID)
     }
 }
-
-extension SKScene {
-    func viewController() -> UIViewController? {
-        var responder: UIResponder? = self.view
-        while responder != nil {
-            responder = responder!.next
-            if let viewController = responder as? UIViewController {
-                return viewController
-            }
-        }
-        return nil
-    }
-}
-
-

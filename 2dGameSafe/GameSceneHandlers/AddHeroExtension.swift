@@ -18,7 +18,6 @@ extension GameScene {
         hero.physicsBody?.affectedByGravity = false
         hero.physicsBody?.allowsRotation = false
         hero.name = "character"
-        hero.texture?.filteringMode = .nearest
         actionSign = SKSpriteNode(imageNamed: "actionSign")
         actionSign.size = CGSize(width: 5, height: 15)
         actionSign.zPosition = 50
@@ -26,5 +25,11 @@ extension GameScene {
         actionSign.isHidden = true
         actionSign.name = "actionSign"
         hero.addChild(actionSign)
+    }
+    
+    func addPolice() {
+        police = childNode(withName: "police") as! SKSpriteNode
+        police.zPosition = 51
+        police.name = "police"
     }
 }

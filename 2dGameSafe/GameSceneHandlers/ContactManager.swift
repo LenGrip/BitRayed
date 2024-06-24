@@ -11,7 +11,7 @@ class ContactManager: ObservableObject {
     weak var scene: GameScene?
     var gameState = GameState()
     
-    var actionSign: SKSpriteNode? 
+    var actionSign: SKSpriteNode?
 
     init(scene: GameScene) {
         self.scene = scene
