@@ -18,7 +18,6 @@ struct StartView: View{
         ZStack{
             RainfallView()
             
-            
             VStack{
                 
                 Spacer()

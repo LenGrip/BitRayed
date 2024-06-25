@@ -30,8 +30,6 @@ struct MainGameView: View {
     @State private var moveToLeft = false
     @State private var moveToRight = false
     
-    
-    
     @StateObject var gameState = GameState()
     @StateObject var gameViewModel = GameViewModel()
     @State private var scene: GameScene? = nil
@@ -40,6 +38,7 @@ struct MainGameView: View {
     var body: some View {
         VStack {
             ZStack {
+                RainfallView()
                 //            SpriteView(scene: scene)
                 if let scene = gameViewModel.gameScene {
                     SpriteView(scene: scene)

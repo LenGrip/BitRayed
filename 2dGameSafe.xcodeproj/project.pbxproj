@@ -193,8 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				9A1E9C832C287C4A0079ED3A /* GameScene.swift */,
-				A7C9A47B2C291FD900F98BB9 /* ContactManager.swift */,
 				9A1E9C842C287C4A0079ED3A /* AddHeroExtension.swift */,
+				A7C9A47B2C291FD900F98BB9 /* ContactManager.swift */,
 				A7C9A4B72C29715700F98BB9 /* ViewControllerPresenter.swift */,
 				9A1E9C852C287C4A0079ED3A /* AddCollisionExtension.swift */,
 				9A1E9C862C287C4A0079ED3A /* TilePhysicsExtension.swift */,
