@@ -14,8 +14,8 @@ struct ContentView: View {
         NavigationStack{
 //            RainfallView()
 //            MainGameView()
-            GameViewControllerRepresentable()
-//            StartView()
+//            GameViewControllerRepresentable()
+            StartView()
         }
         .ignoresSafeArea()
     }

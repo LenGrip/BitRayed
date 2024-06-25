@@ -21,6 +21,7 @@
 		034893DD2C292CCD005867CC /* main_music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 034893DA2C292CCD005867CC /* main_music.wav */; };
 		034893DE2C292CCD005867CC /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893DB2C292CCD005867CC /* AudioPlayer.swift */; };
 		034893E02C294CBC005867CC /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034893DF2C294CBC005867CC /* GameState.swift */; };
+		9A1BFD5D2C2AB90400FA1E79 /* MyTileSet 1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BFD5C2C2AB90400FA1E79 /* MyTileSet 1.sks */; };
 		9A1E9C8E2C287C4A0079ED3A /* AddCollisionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E9C852C287C4A0079ED3A /* AddCollisionExtension.swift */; };
 		9A1E9C912C287C4A0079ED3A /* RainfallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E9C7F2C287C4A0079ED3A /* RainfallView.swift */; };
 		9A1E9C922C287C4A0079ED3A /* TilePhysicsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E9C862C287C4A0079ED3A /* TilePhysicsExtension.swift */; };
@@ -30,6 +31,7 @@
 		9A1E9C962C287C4A0079ED3A /* HoldableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E9C7D2C287C4A0079ED3A /* HoldableButton.swift */; };
 		9A1E9C972C287C4A0079ED3A /* MainScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A1E9C892C287C4A0079ED3A /* MainScene.sks */; };
 		9A1E9C992C287C4A0079ED3A /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A1E9C882C287C4A0079ED3A /* MyTileSet.sks */; };
+		9AF3D8C32C2AE7A200BCD6F3 /* MainScene 2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9AF3D8C22C2AE7A200BCD6F3 /* MainScene 2.sks */; };
 		A7C9A43C2C1B382D00F98BB9 /* _dGameSafeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9A43B2C1B382D00F98BB9 /* _dGameSafeApp.swift */; };
 		A7C9A43E2C1B382D00F98BB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9A43D2C1B382D00F98BB9 /* ContentView.swift */; };
 		A7C9A4402C1B382E00F98BB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C9A43F2C1B382E00F98BB9 /* Assets.xcassets */; };
@@ -65,6 +67,7 @@
 		034893DA2C292CCD005867CC /* main_music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = main_music.wav; sourceTree = "<group>"; };
 		034893DB2C292CCD005867CC /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		034893DF2C294CBC005867CC /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		9A1BFD5C2C2AB90400FA1E79 /* MyTileSet 1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "MyTileSet 1.sks"; sourceTree = "<group>"; };
 		9A1E9C7D2C287C4A0079ED3A /* HoldableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldableButton.swift; sourceTree = "<group>"; };
 		9A1E9C7F2C287C4A0079ED3A /* RainfallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainfallView.swift; sourceTree = "<group>"; };
 		9A1E9C812C287C4A0079ED3A /* MainGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameView.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		9A1E9C862C287C4A0079ED3A /* TilePhysicsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePhysicsExtension.swift; sourceTree = "<group>"; };
 		9A1E9C882C287C4A0079ED3A /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 		9A1E9C892C287C4A0079ED3A /* MainScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainScene.sks; sourceTree = "<group>"; };
+		9AF3D8C22C2AE7A200BCD6F3 /* MainScene 2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "MainScene 2.sks"; sourceTree = "<group>"; };
 		A7C9A4382C1B382D00F98BB9 /* 2dGameSafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2dGameSafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C9A43B2C1B382D00F98BB9 /* _dGameSafeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _dGameSafeApp.swift; sourceTree = "<group>"; };
 		A7C9A43D2C1B382D00F98BB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -207,7 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				9A1E9C882C287C4A0079ED3A /* MyTileSet.sks */,
+				9A1BFD5C2C2AB90400FA1E79 /* MyTileSet 1.sks */,
 				9A1E9C892C287C4A0079ED3A /* MainScene.sks */,
+				9AF3D8C22C2AE7A200BCD6F3 /* MainScene 2.sks */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -341,12 +347,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7C9A4BC2C2971AD00F98BB9 /* Rain.sks in Resources */,
+				9AF3D8C32C2AE7A200BCD6F3 /* MainScene 2.sks in Resources */,
 				A7C9A4622C2183FB00F98BB9 /* PolyPlane.scn in Resources */,
 				A7C9A4432C1B382E00F98BB9 /* Preview Assets.xcassets in Resources */,
 				034893DD2C292CCD005867CC /* main_music.wav in Resources */,
 				A7C9A4612C2183FB00F98BB9 /* Box.scn in Resources */,
 				9A1E9C972C287C4A0079ED3A /* MainScene.sks in Resources */,
 				9A1E9C992C287C4A0079ED3A /* MyTileSet.sks in Resources */,
+				9A1BFD5D2C2AB90400FA1E79 /* MyTileSet 1.sks in Resources */,
 				A7C9A4BB2C2971AD00F98BB9 /* Assets.xcassets in Resources */,
 				A7C9A4402C1B382E00F98BB9 /* Assets.xcassets in Resources */,
 			);

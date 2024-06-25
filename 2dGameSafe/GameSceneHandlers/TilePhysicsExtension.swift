@@ -38,7 +38,7 @@ extension GameScene {
                     
                     tileNode.texture?.filteringMode = .nearest
                     // Tag the node for easy identification
-                    tileNode.name = "furniture"
+//                    tileNode.name = "furniture"
                     
                     self.addChild(tileNode)
                 }
