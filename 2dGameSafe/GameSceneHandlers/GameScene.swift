@@ -26,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var cameraNode = SKCameraNode()
     var warningSign: SKSpriteNode!
     var heroNode: SKSpriteNode!
+    var possessionTimer: Timer?
     
     var gameState: GameState?
 
@@ -36,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
-        self.backgroundColor = .black
+        self.backgroundColor = .clear
         
         setupCamera()
         
@@ -44,13 +45,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         addPolice()
         
+        addPoliceMovement()
+        
         addCollisions(names: collisionNames)
         
         contactManager = ContactManager(scene: self)
         
         viewControllerPresenter = ViewControllerPresenter(presentingViewController: viewController()!)
         
-        addRainEffect()
+//        addRainEffect()
         
         for node in self.children {
             if(node.name == "wallPhysics") {
@@ -65,7 +68,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addRainEffect() {
         if let rainParticle = SKEmitterNode(fileNamed: "Rain") {
-            rainParticle.position = CGPoint(x: -300, y: 0)
+            rainParticle.particleTexture = SKTexture(imageNamed: "character")
+            rainParticle.particleSize = CGSize(width: 10, height: 10)
+            rainParticle.position = CGPoint(x: -300, y: 100)
+            rainParticle.speed = 10.0
+            rainParticle.particleLifetime = 2.0
+            rainParticle.particleBirthRate = 100.0
             rainParticle.zPosition = -10
             rainParticle.targetNode = self
             rainParticle.particlePositionRange = CGVector(dx: self.size.width, dy: 0)
@@ -84,50 +92,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let position = touch.location(in: self)
-            let touchNode = self.nodes(at: position)
-            
-            for node in touchNode {
-                if node.name == "left" {
-                    moveToLeft = true
-                }
-                if node.name == "right" {
-                    moveToRight = true
-                }
-                if node.name == "up" {
-                    moveUp = true
-                }
-                if node.name == "down" {
-                    moveDown = true
-                }
-            }
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let position = touch.location(in: self)
-            let touchNode = self.nodes(at: position)
-            
-            for node in touchNode {
-                if node.name == "left" {
-                    moveToLeft = false
-                }
-                if node.name == "right" {
-                    moveToRight = false
-                }
-                if node.name == "up" {
-                    moveUp = false
-                }
-                if node.name == "down" {
-                    moveDown = false
-                }
-            }
-        }
-    }
-    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch in touches {
+//            let position = touch.location(in: self)
+//            let touchNode = self.nodes(at: position)
+//            
+//            for node in touchNode {
+//                if node.name == "left" {
+//                    moveToLeft = true
+//                }
+//                if node.name == "right" {
+//                    moveToRight = true
+//                }
+//                if node.name == "up" {
+//                    moveUp = true
+//                }
+//                if node.name == "down" {
+//                    moveDown = true
+//                }
+//            }
+//        }
+//    }
+//    
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch in touches {
+//            let position = touch.location(in: self)
+//            let touchNode = self.nodes(at: position)
+//            
+//            for node in touchNode {
+//                if node.name == "left" {
+//                    moveToLeft = false
+//                }
+//                if node.name == "right" {
+//                    moveToRight = false
+//                }
+//                if node.name == "up" {
+//                    moveUp = false
+//                }
+//                if node.name == "down" {
+//                    moveDown = false
+//                }
+//            }
+//        }
+//    }
+//    
     override func update(_ currentTime: TimeInterval) {
         if moveToLeft {
             hero.position.x -= 2
@@ -163,30 +171,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
+        actionButton = false
         
-        if hero.intersects(police) {
+        if hero.intersects(police) && possesButton {
             handleContactBetweenHeroAndPolice()
         }
+        
         possesButton = false
         cameraNode.position = hero.position
     }
     
     func handleContactBetweenHeroAndPolice() {
-        if possesButton {
-            isPossessed = !isPossessed
-            if isPossessed {
-                police.alpha = 0.5
-            } else if isPossessed == false {
-                police.alpha = 1
-            }
-            
-            if let hero = self.childNode(withName: "character") as? SKSpriteNode {
-                hero.texture = SKTexture(imageNamed: isPossessed ? "human" : "character")
-                hero.size = CGSize(width: isPossessed ? 15 : 16, height: isPossessed ? 25 : 16)
-                hero.texture?.filteringMode = .nearest
-            }
+        isPossessed = true
+        if isPossessed {
+            police.position = CGPoint(x: -1000.0, y: -1000.0)
+            startPossessionTimer()
+            police.removeAllActions()
         }
         
+        if let hero = self.childNode(withName: "character") as? SKSpriteNode {
+            hero.texture = SKTexture(imageNamed: isPossessed ? "human" : "character")
+            hero.size = CGSize(width: isPossessed ? 15 : 16, height: isPossessed ? 25 : 16)
+            hero.texture?.filteringMode = .nearest
+        }
+    }
+    
+    func startPossessionTimer() {
+        possessionTimer?.invalidate()
+        possessionTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(endPossession), userInfo: nil, repeats: false)
+    }
+    
+    @objc func endPossession() {
+        isPossessed = false
+        police.position = CGPoint(x: -500, y: -350)
+        addPoliceMovement()
+        if let hero = self.childNode(withName: "character") as? SKSpriteNode {
+            hero.texture = SKTexture(imageNamed: "character")
+            hero.size = CGSize(width: 16, height: 16)
+            hero.texture?.filteringMode = .nearest
+        }
     }
     
     public func didBegin(_ contact: SKPhysicsContact) {

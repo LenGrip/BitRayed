@@ -12,7 +12,6 @@ struct GlitchText: View {
 
     var body: some View {
         ZStack {
-            
             Text("BitRayed")
                 .font(.custom("dogica", size: 69))
                 .bold()
