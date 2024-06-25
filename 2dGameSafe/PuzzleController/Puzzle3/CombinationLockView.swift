@@ -19,6 +19,8 @@ struct CombinationLockView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    let defaults = UserDefaults.standard
+    
     var body: some View {
         ZStack {
             Image("level3_bg")
@@ -35,6 +37,7 @@ struct CombinationLockView: View {
                 Spacer()
                 Button {
                     print("left \(leftIndex), mid \(midIndex), right \(rightIndex)")
+                    defaults.set(true, forKey: "Puzzle3_done")
                 } label: {
                     Text("Unlock")
                         .font(.largeTitle)
@@ -59,7 +62,7 @@ struct CombinationLockView: View {
 struct CustomScrollView: View {
     let images: [String]
     @Binding var currentIndex: Int
-
+    
     var body: some View {
         ScrollView(.vertical) {
             VStack {
@@ -73,7 +76,7 @@ struct CustomScrollView: View {
                             .scrollTransition { content, phase in
                                 content
                                     .scaleEffect(phase.isIdentity ? 1.0 : 0.9)
-//                                    .rotation3DEffect(.degrees(phase.isIdentity ? 0 : (1 - phase.value) * 90), axis: (x: 1, y: 0, z: 0))
+                                //                                    .rotation3DEffect(.degrees(phase.isIdentity ? 0 : (1 - phase.value) * 90), axis: (x: 1, y: 0, z: 0))
                             }
                             .onAppear {
                                 let frame = geometry.frame(in: .global)

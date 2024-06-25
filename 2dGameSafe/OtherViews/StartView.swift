@@ -13,6 +13,8 @@ struct StartView: View{
     @StateObject private var audioPlayer = AudioPlayer()
     @State var navigateToGame = false
     @State private var isLoading = false
+    let defaults = UserDefaults.standard
+
     
     var body: some View {
         ZStack{
@@ -28,7 +30,7 @@ struct StartView: View{
                 
                 Button(action: {
                     isLoading = true
-                    
+                    isNewGame()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         navigateToGame = true
                         isLoading = false
@@ -41,7 +43,7 @@ struct StartView: View{
                         .background(RoundedRectangle(cornerRadius: 24).frame(width: 250))
                 }
                 Button(action: {
-                    
+                    defaults.set(false, forKey: "NewGame")
                 }) {
                     Text("Continue")
                         .font(.title2)
@@ -83,6 +85,16 @@ struct StartView: View{
             MainGameView()
         }
         
+    }
+    
+    func isNewGame(){
+        defaults.set(true, forKey: "NewGame")
+        defaults.set(false, forKey: "Puzzle1_done")
+        defaults.set(false, forKey: "Puzzle2_done")
+        defaults.set(false, forKey: "Puzzle3_done")
+        defaults.set(false, forKey: "Puzzle4_done")
+        defaults.set(false, forKey: "Puzzle5_done")
+        defaults.set(false, forKey: "Puzzle6_done")
     }
 }
 

@@ -35,6 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let collisionNames = ["bed", "drawer", "tv", "chest", "wardrobe", "file_cabinet", "safe", "pic_frame"]
     
+    let defaults = UserDefaults.standard
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         self.backgroundColor = .clear
@@ -153,7 +155,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if actionButton {
             if let gameState = gameState {
                 if gameState.bedTapable {
-                    viewControllerPresenter.present(viewControllerType: .shadow)
+                    if (defaults.bool(forKey: "Puzzle3_done")){
+                        
+                        viewControllerPresenter.present(viewControllerType: .shadow)
+                    }
                 } else if gameState.drawerTapable {
                     viewControllerPresenter.present(viewControllerType: .drawer)
                 } else if gameState.chestTapable {

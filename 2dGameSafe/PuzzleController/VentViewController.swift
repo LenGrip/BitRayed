@@ -15,6 +15,7 @@ public class VentViewController: UIViewController, SKPhysicsContactDelegate {
     private var rotationTimer: Timer?
     
     private var isTapped = false
+    let defaults = UserDefaults.standard
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,6 +188,7 @@ public class VentViewController: UIViewController, SKPhysicsContactDelegate {
         if let node = scene.atPoint(sceneLocation) as? SKSpriteNode, node.name == "knife" {
             if numberOfBoltsAffectedByGravity >= 4, isTapped == false {
                 animateKnife(node)
+                defaults.set(false, forKey: "Puzzle6_done")
                 isTapped = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     self.returnToGameViewController()

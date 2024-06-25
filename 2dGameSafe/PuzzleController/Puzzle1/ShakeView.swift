@@ -12,6 +12,7 @@ struct ShakeView: View {
     @StateObject private var motionManager = ShakeMotionManager()
     @StateObject private var wardrobeShakeView = WardrobeShakeView(size: CGSize(width: 500, height: 500))
     @Environment(\.dismiss) private var dismiss
+    let defaults = UserDefaults.standard
 
     var body: some View {
             ZStack {
@@ -35,6 +36,7 @@ struct ShakeView: View {
             }
             .onChange(of: wardrobeShakeView.hasTapped) {
                 if wardrobeShakeView.hasTapped {
+                    defaults.set(true, forKey: "Puzzle1_done")
                     dismiss()
                 }
             }

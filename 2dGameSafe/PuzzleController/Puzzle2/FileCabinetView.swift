@@ -17,6 +17,7 @@ struct FileCabinetView: View {
     let folders = ["Folder 1", "Folder 2", "Folder 3", "Folder 4", "Folder 5"]
     
     @Environment(\.dismiss) private var dismiss
+    let defaults = UserDefaults.standard
     
     var body: some View {
         ZStack{
@@ -42,6 +43,12 @@ struct FileCabinetView: View {
                         .interpolation(.none)
                         .resizable()
                         .opacity(index == gyroManager.currentFolderIndex ? 1 : 0)
+                        .onTapGesture {
+                            if index == 4 {
+                                
+                                defaults.set(true, forKey: "Puzzle2_done")
+                            }
+                        }
                 }
                 
                 Image("Front Drawer")

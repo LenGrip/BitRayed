@@ -14,6 +14,7 @@ public class SafeViewController: UIViewController, SKPhysicsContactDelegate {
     
     let password = [6, 5, 7]
     var enteredPassword: [Int] = []
+    let defaults = UserDefaults.standard
     
     private var lastRotationDirection: RotationDirection = .none
     
@@ -209,6 +210,7 @@ public class SafeViewController: UIViewController, SKPhysicsContactDelegate {
             print("password skrg \(enteredPassword)")
             if enteredPassword.count == password.count {
                 makeSafeOpen()
+                defaults.set(false, forKey: "Puzzle4_done")
             }
         } else {
             print("password salah blog")
