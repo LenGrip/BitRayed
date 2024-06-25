@@ -41,74 +41,76 @@ public class DrawerViewController: UIViewController, SKPhysicsContactDelegate {
         let centerWidth = width / 2
         let centerHeight = height / 2
         
+        let drawerBackground = SKSpriteNode(imageNamed: "drawerBackground")
+        drawerBackground.size = CGSize(width: width, height: height)
+        drawerBackground.position = CGPoint(x: centerWidth, y: centerHeight)
+        drawerBackground.zPosition = -5
+        drawerBackground.texture?.filteringMode = .nearest
+        scene.addChild(drawerBackground)
+        
         let drawerNode = SKSpriteNode(imageNamed: "drawerBase")
-        drawerNode.size = CGSize(width: 300, height: 300)
+        drawerNode.size = CGSize(width: width - 200, height: height - 400)
         drawerNode.position = CGPoint(x: centerWidth, y: centerHeight)
         drawerNode.zPosition = -1
+        drawerNode.texture?.filteringMode = .nearest
         drawerNode.name = "drawer"
         
         let sideDrawerNode = SKSpriteNode(imageNamed: "drawerKanan")
-        sideDrawerNode.size = CGSize(width: 50, height: 300)
-        sideDrawerNode.position = CGPoint(x: 150, y: 0)
+        sideDrawerNode.size = CGSize(width: 200, height: drawerNode.size.height)
+        sideDrawerNode.position = CGPoint(x: drawerNode.size.width / 2, y: 0)
         sideDrawerNode.zPosition = 0
         sideDrawerNode.physicsBody = SKPhysicsBody(texture: sideDrawerNode.texture!, size: sideDrawerNode.size)
         sideDrawerNode.physicsBody?.affectedByGravity = false
         sideDrawerNode.physicsBody?.isDynamic = false
+        sideDrawerNode.texture?.filteringMode = .nearest
         drawerNode.addChild(sideDrawerNode)
         
         let sideDrawerNode2 = SKSpriteNode(imageNamed: "drawerKiri")
-        sideDrawerNode2.size = CGSize(width: 50, height: 300)
-        sideDrawerNode2.position = CGPoint(x: -150, y: 0)
+        sideDrawerNode2.size = CGSize(width: 200, height: drawerNode.size.height)
+        sideDrawerNode2.position = CGPoint(x: -drawerNode.size.width / 2, y: 0)
         sideDrawerNode2.zPosition = 0
         sideDrawerNode2.physicsBody = SKPhysicsBody(texture: sideDrawerNode2.texture!, size: sideDrawerNode2.size)
         sideDrawerNode2.physicsBody?.affectedByGravity = false
         sideDrawerNode2.physicsBody?.isDynamic = false
+        sideDrawerNode2.texture?.filteringMode = .nearest
         drawerNode.addChild(sideDrawerNode2)
         
         let topDrawerNode = SKSpriteNode(imageNamed: "drawerTop")
-        topDrawerNode.size = CGSize(width: 300, height: 75)
-        topDrawerNode.position = CGPoint(x: 0, y: 150)
+        topDrawerNode.size = CGSize(width: drawerNode.size.width + 50, height: 450)
+        topDrawerNode.position = CGPoint(x: 0, y: drawerNode.position.y / 2 + 200)
         topDrawerNode.zPosition = 0
         topDrawerNode.physicsBody = SKPhysicsBody(texture: topDrawerNode.texture!, size: topDrawerNode.size)
         topDrawerNode.physicsBody?.affectedByGravity = false
         topDrawerNode.physicsBody?.isDynamic = false
+        topDrawerNode.texture?.filteringMode = .nearest
         drawerNode.addChild(topDrawerNode)
         
         let frontDrawerNode = SKSpriteNode(imageNamed: "drawerFront")
-        frontDrawerNode.size = CGSize(width: 350, height: 25)
-        frontDrawerNode.position = CGPoint(x: 0, y: -150)
+        frontDrawerNode.size = CGSize(width: drawerNode.size.width + 400, height: 100)
+        frontDrawerNode.position = CGPoint(x: 0, y: -drawerNode.position.y / 2)
         frontDrawerNode.zPosition = 0
         frontDrawerNode.physicsBody = SKPhysicsBody(texture: frontDrawerNode.texture!, size: frontDrawerNode.size)
         frontDrawerNode.physicsBody?.affectedByGravity = false
         frontDrawerNode.physicsBody?.isDynamic = false
+        frontDrawerNode.texture?.filteringMode = .nearest
         drawerNode.addChild(frontDrawerNode)
-        
-        let handleDrawerNode = SKSpriteNode(imageNamed: "drawerHandle")
-        handleDrawerNode.size = CGSize(width: 130, height: 10)
-        handleDrawerNode.position = CGPoint(x: 0, y: -160)
-        handleDrawerNode.zPosition = 0
-        handleDrawerNode.physicsBody = SKPhysicsBody(texture: handleDrawerNode.texture!, size: handleDrawerNode.size)
-        handleDrawerNode.physicsBody?.affectedByGravity = false
-        handleDrawerNode.physicsBody?.isDynamic = false
-        handleDrawerNode.name = "handle"
-        drawerNode.addChild(handleDrawerNode)
         
         scene.addChild(drawerNode)
         
         let centerX = screenSize.width / 2
         let centerY = screenSize.height / 2
-        let rangeX: CGFloat = 50
-        let rangeY: CGFloat = 40
+        let rangeX: CGFloat = 250
+        let rangeY: CGFloat = 50
         let rangeZ: [CGFloat] = [2, 3, 4, 5, 6]
         
-        addItem(named: "drawerScrewdriver", size: CGSize(width: 22, height: 128), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: [], baseName: "screw", itemCount: 1, rangeX: rangeX, rangeY: rangeY)
-        addItem(named: "drawerMarker", size: CGSize(width: 24, height: 92), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "marker", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
-        addItem(named: "drawerPen", size: CGSize(width: 16, height: 124), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "pen", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
-        addItem(named: "drawerScissor", size: CGSize(width: 68, height: 136), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "scissor", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
-        addItem(named: "drawerStapler", size: CGSize(width: 38, height: 94), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "stappler", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
-        addItem(named: "drawerPaperclip", size: CGSize(width: 10, height: 30), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "papperclip", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
-        addItem(named: "drawerBattery", size: CGSize(width: 14, height: 40), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "battery", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
-        addItem(named: "drawerEraser", size: CGSize(width: 28, height: 46), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "eraser", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerScrewdriver", size: CGSize(width: 44, height: 256), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: [], baseName: "screw", itemCount: 1, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerMarker", size: CGSize(width: 48, height: 184), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "marker", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerPen", size: CGSize(width: 32, height: 248), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "pen", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerScissor", size: CGSize(width: 136, height: 272), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "scissor", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerStapler", size: CGSize(width: 76, height: 188), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "stappler", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerPaperclip", size: CGSize(width: 20, height: 60), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "papperclip", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerBattery", size: CGSize(width: 28, height: 80), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "battery", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
+        addItem(named: "drawerEraser", size: CGSize(width: 56, height: 92), centerPosition: CGPoint(x: centerX, y: centerY), zPositions: rangeZ, baseName: "eraser", itemCount: 5, rangeX: rangeX, rangeY: rangeY)
         
         let screwNode = scene.childNode(withName: "screw1") as! SKSpriteNode
         screwNode.zRotation = .pi / 5
@@ -150,6 +152,7 @@ public class DrawerViewController: UIViewController, SKPhysicsContactDelegate {
                 node.zPosition = 1
             }
             node.name = "\(baseName)\(i)"
+            node.texture?.filteringMode = .nearest
             scene.addChild(node)
         }
     }
@@ -201,10 +204,10 @@ public class DrawerViewController: UIViewController, SKPhysicsContactDelegate {
         let location = gesture.location(in: sceneView)
         let sceneLocation = scene.convertPoint(fromView: location)
         
-        let xMin = drawerNode.position.x - drawerNode.size.width / 2 + 50
-        let xMax = drawerNode.position.x + drawerNode.size.width / 2 - 50
-        let yMin = drawerNode.position.y - drawerNode.size.height / 2 + 50
-        let yMax = drawerNode.position.y + drawerNode.size.height / 2 - 100
+        let xMin = drawerNode.position.x - drawerNode.size.width / 2 + 200
+        let xMax = drawerNode.position.x + drawerNode.size.width / 2 - 200
+        let yMin = drawerNode.position.y - drawerNode.size.height / 2 + 200
+        let yMax = drawerNode.position.y + drawerNode.size.height / 2 - 300
         
         switch gesture.state {
         case .began:
