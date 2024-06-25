@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct GameViewControllerRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController (context: Context) -> GameViewController {
-        GameViewController ()
+    func makeUIViewController (context: Context) -> SafeViewController {
+        SafeViewController ()
     }
     
-    func updateUIViewController(_ uiViewController: GameViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: SafeViewController, context: Context) {
         
     }
 }

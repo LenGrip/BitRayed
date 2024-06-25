@@ -45,7 +45,7 @@ public class VentViewController: UIViewController, SKPhysicsContactDelegate {
         let height = scene.size.height
         
         let ventNode = SKSpriteNode(imageNamed: "Grill")
-        ventNode.size = CGSize(width: 300, height: 300)
+        ventNode.size = CGSize(width: 500, height: 500)
         ventNode.position = CGPoint(x: width / 2, y: height / 2)
         ventNode.zPosition = 0
         ventNode.physicsBody = SKPhysicsBody(rectangleOf: ventNode.size)
@@ -56,15 +56,15 @@ public class VentViewController: UIViewController, SKPhysicsContactDelegate {
         scene.addChild(ventNode)
         
         let positions: [CGPoint] = [
-            CGPoint(x: width / 2 + 130, y: height / 2 + 130),
-            CGPoint(x: width / 2 - 130, y: height / 2 - 130),
-            CGPoint(x: width / 2 - 130, y: height / 2 + 130),
-            CGPoint(x: width / 2 + 130, y: height / 2 - 130)
+            CGPoint(x: width / 2 + 220, y: height / 2 + 220),
+            CGPoint(x: width / 2 - 220, y: height / 2 - 220),
+            CGPoint(x: width / 2 - 220, y: height / 2 + 220),
+            CGPoint(x: width / 2 + 220, y: height / 2 - 220)
         ]
         
         for position in positions {
             let boltNode = SKSpriteNode(imageNamed: "Screw")
-            boltNode.size = CGSize(width: 20, height: 20)
+            boltNode.size = CGSize(width: 40, height: 40)
             boltNode.position = position
             boltNode.zPosition = 2
             boltNode.physicsBody = SKPhysicsBody(circleOfRadius: boltNode.size.width)
@@ -79,7 +79,7 @@ public class VentViewController: UIViewController, SKPhysicsContactDelegate {
         }
         
         let knifeNode = SKSpriteNode(imageNamed: "Background")
-        knifeNode.size = CGSize(width: 300, height: 300)
+        knifeNode.size = CGSize(width: 500, height: 500)
         knifeNode.position = CGPoint(x: width / 2, y: height / 2)
         knifeNode.zPosition = -1
         knifeNode.name = "knife"
@@ -160,7 +160,12 @@ public class VentViewController: UIViewController, SKPhysicsContactDelegate {
             print("nilai awal \(numberOfBoltsAffectedByGravity)")
             node.physicsBody?.affectedByGravity = true
             node.physicsBody?.isDynamic = true
-            node.physicsBody?.applyImpulse(CGVector(dx: 20, dy: 20))
+            if node.position.x > scene.size.width / 2 {
+                node.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
+            } else {
+                node.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
+            }
+            
             numberOfBoltsAffectedByGravity += 1
             print("nilai akhir \(numberOfBoltsAffectedByGravity)")
             if numberOfBoltsAffectedByGravity >= 4 {
